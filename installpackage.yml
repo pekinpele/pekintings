@@ -1,0 +1,32 @@
+---
+# installpackage.yml
+# install nginx and start the program
+ - name: install nginx
+   hosts: my_hosts
+   remote_user: lnxcfg
+   become: true
+   become_method: sudo
+   become_user: root
+
+
+   tasks:
+         - name: install nginx
+           # install nginx web server
+           # using lnxcfg as example user/group
+           yum:
+             name: nginx
+             state: latest
+         - name: check nginx status
+           service:
+             name: nginx
+             state: started
+         - name: enable nginx during boot
+           service:
+             name: nginx
+             state: restarted
+             enabled: yes
+   handlers:
+         - name: restart nginx
+           service:
+             name: nginx
+             state: restarted
