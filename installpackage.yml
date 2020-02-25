@@ -2,7 +2,7 @@
 # installpackage.yml the end of time
 # install nginx and start the program
  - name: install nginx
-   hosts: nginxserver01
+   hosts: my_hosts
    remote_user: lnxcfg
    become: true
    become_method: sudo
